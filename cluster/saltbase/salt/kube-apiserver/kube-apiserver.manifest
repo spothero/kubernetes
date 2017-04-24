@@ -267,8 +267,8 @@
         "mountPath": "/etc/srv/pki",
         "readOnly": true},
 {% if grains['os_family'] == 'RedHat' %}
-        { "name": "etcpkica-trustextractedpem",
-        "mountPath": "/etc/pki/ca-trust/extracted/pem",
+        { "name": "cacertificates",
+        "mountPath": "/etc/ssl/certs/ca-certificates.crt",
         "readOnly": true},
 {% endif %}
         { "name": "srvsshproxy",
@@ -317,9 +317,9 @@
         "path": "/etc/srv/pki"}
   },
 {% if grains['os_family'] == 'RedHat' %}
-  { "name": "etcpkica-trustextractedpem",
+  { "name": "cacertificates",
     "hostPath": {
-        "path": "/etc/pki/ca-trust/extracted/pem"}
+        "path": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"}
   },
 {% endif %}
   { "name": "srvsshproxy",

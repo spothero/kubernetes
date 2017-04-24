@@ -70,8 +70,8 @@ spec:
       name: usr-ca-certs
       readOnly: true
 {% if grains['os_family'] == 'RedHat' %}
-    - mountPath: /etc/pki/ca-trust/extracted/pem
-      name: etcpkica-trustextractedpem
+    - mountPath: /etc/ssl/certs/ca-certificates.crt
+      name: cacertificates
       readOnly: true
 {% endif %}
     - mountPath: /var/log
@@ -89,8 +89,8 @@ spec:
     name: etc-ssl-certs
 {% if grains['os_family'] == 'RedHat' %}
   - hostPath:
-      path: /etc/pki/ca-trust/extracted/pem
-    name: etcpkica-trustextractedpem
+      path: /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+    name: cacertificates
 {% endif %}
   - hostPath:
       path: /var/lib/kube-proxy/kubeconfig

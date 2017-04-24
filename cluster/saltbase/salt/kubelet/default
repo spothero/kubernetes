@@ -96,7 +96,7 @@
 {% set kubelet_container = "" -%}
 {% set runtime_container = "" -%}
 {% if grains['os_family'] == 'RedHat' -%}
-  {% set cgroup_root = "--cgroup-root=systemd" -%}
+  {% set cgroup_root = "--cgroup-driver=systemd" -%}
 {% endif %}
 {% if grains['os_family'] == 'Debian' -%}
   {% if pillar.get('is_systemd') %}
