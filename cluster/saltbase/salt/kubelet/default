@@ -1,6 +1,6 @@
 {% set daemon_args = "$DAEMON_ARGS" -%}
 {% if grains['os_family'] == 'RedHat' -%}
-  {% set daemon_args = "" -%}
+  {% set daemon_args = "--require-kubeconfig=true" -%}
 {% endif -%}
 
 {% if grains.api_servers is defined -%}
