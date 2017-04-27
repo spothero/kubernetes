@@ -63,15 +63,9 @@ spec:
     securityContext:
       privileged: true
     volumeMounts:
-{% if grains['os_family'] == 'RedHat' %}
-    - mountPath: /etc/ssl/certs/ca-certificates.crt
-      name: cacertificates
-      readOnly: true
-{% else %}
     - mountPath: /etc/ssl/certs
       name: etc-ssl-certs
       readOnly: true
-{% endif %}
     - mountPath: /usr/share/ca-certificates
       name: usr-ca-certs
       readOnly: true
@@ -81,22 +75,22 @@ spec:
     - mountPath: /var/lib/kube-proxy/kubeconfig
       name: kubeconfig
       readOnly: false
+    - mountPath: /var/lib/kube-proxy/ca.crt
+      name: cacrt
+      readOnly: true
   volumes:
   - hostPath:
       path: /usr/share/ca-certificates
     name: usr-ca-certs
-{% if grains['os_family'] == 'RedHat' %}
-  - hostPath:
-      path: /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
-    name: cacertificates
-{% else %}
   - hostPath:
       path: /etc/ssl/certs
     name: etc-ssl-certs
-{% endif %}
   - hostPath:
       path: /var/lib/kube-proxy/kubeconfig
     name: kubeconfig
+  - hostPath:
+      path: /var/lib/kube-proxy/ca.crt
+    name: cacrt
   - hostPath:
       path: /var/log
     name: varlog

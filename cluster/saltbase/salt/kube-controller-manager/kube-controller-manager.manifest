@@ -134,15 +134,9 @@
         { "name": "logfile",
         "mountPath": "/var/log/kube-controller-manager.log",
         "readOnly": false},
-{% if grains['os_family'] == 'RedHat' %}
-        { "name": "cacertificates",
-        "mountPath": "/etc/ssl/certs/ca-certificates.crt",
-        "readOnly": true},
-{% else %}
         { "name": "etcssl",
         "mountPath": "/etc/ssl",
         "readOnly": true},
-{% endif %}
         { "name": "usrsharecacerts",
         "mountPath": "/usr/share/ca-certificates",
         "readOnly": true},
@@ -169,17 +163,10 @@
     "hostPath": {
         "path": "/var/log/kube-controller-manager.log"}
   },
-{% if grains['os_family'] == 'RedHat' %}
-  { "name": "cacertificates",
-    "hostPath": {
-        "path": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"}
-  },
-{% else %}
   { "name": "etcssl",
     "hostPath": {
         "path": "/etc/ssl"}
   },
-{% endif %}
   { "name": "usrsharecacerts",
     "hostPath": {
         "path": "/usr/share/ca-certificates"}
