@@ -146,6 +146,9 @@
         { "name": "etcopenssl",
         "mountPath": "/etc/openssl",
         "readOnly": true},
+        { "name": "etckubernetesca",
+        "mountPath": "/etc/kubernetes/ca",
+        "readOnly": true},
         { "name": "etcpki",
         "mountPath": "/etc/pki",
         "readOnly": true}
@@ -178,6 +181,10 @@
   { "name": "etcopenssl",
     "hostPath": {
         "path": "/etc/openssl"}
+  },
+  { "name": "etckubernetesca",
+    "hostPath": {
+        "path": "/etc/kubernetes/ca"}
   },
   { "name": "etcpki",
     "hostPath": {
